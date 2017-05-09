@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>index</title>
+    <!--<link rel="stylesheet" href="style.css"type="text/css">-->
+    <link rel="stylesheet" href="s.css"type="text/css">
+</head>
+<body>
+<div id="page" class="hfeed site">
+    <div id="content" class="site-content">
+        <div id="primary" class="content-area">
+            <main id="main" class="site-main" role="main">
+                <input type="radio" name="radio-set" checked id="nav1" style="display: none">
+                <!--<a href="#panel1">导航1</a>-->
+                <input type="radio" name="radio-set" id="nav2"  style="display: none">
+                <!--<a href="#panel2">导航2</a>-->
+                <input type="radio" name="radio-set" id="nav3"  style="display: none">
+                <!--<a href="#panel3">导航3</a>-->
+                <input type="radio" name="radio-set" id="nav4" style="display: none">
+                <!--<a href="#panel4">导航4</a>-->
+                <div id="" class="scroll" style="width: 100%">
+
+                    <section class="panel" id="panel1">
+                        <div class="bg">
+
+                        </div>
+
+                        <div class="ver">
+                            <img src="1.jpg" style="height: 100%;width:100%;">
+                        </div>
+                    </section>
+
+                    <section class="panel" id="panel2">
+                        <div class="bg">
+
+                        </div>
+
+                        <div class="ver">
+                            <img src="1.jpg" style="height: 100%;width:100%;">
+                        </div>
+                    </section>
+
+                     <section class="panel" id="panel3">
+                        <div class="bg">
+
+                        </div>
+
+                        <div class="ver">
+                            <img src="1.jpg" style="height: 100%;width:100%;">
+                        </div>
+                    </section>
+
+                     <section class="panel" id="panel4">
+                        <div class="bg">
+
+                        </div>
+
+                        <div class="ver">
+                            <img src="1.jpg" style="height: 100%;width:100%;">
+                        </div>
+                    </section>
+
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
+<div id="bar">
+    <i class="point"></i>
+    <i class="point"></i>
+    <i class="point"></i>
+    <span data-level="0">
+        <i></i>
+        <span>Home</span>
+    </span>
+    <span data-level="1">
+        <i></i>
+        <span>Works</span>
+    </span>
+    <span data-level="2">
+        <i></i>
+        <span>Team</span>
+    </span>
+    <span data-level="3">
+        <i></i>
+        <span>Contact</span>
+    </span>
+</div>
+</body>
+<script>
+    window.onload= function () {
+        var scroll=document.getElementsByClassName("scroll")[0];
+        var panel=document.getElementsByClassName("panel");
+        var clientH=window.innerHeight;
+        scroll.style.height=clientH+"px";
+        for(var i=0;i<panel.length;i++){
+            panel[i].style.height=clientH+"px";
+        }
+        var inputC=document.getElementsByTagName("input");
+        var wheel= function (event) {
+            var delta=0;
+            if(!event)//for ie
+                event=window.event;
+            if(event.wheelDelta){//ie,opera
+                delta=event.wheelDelta/120;
+            }else if(event.detail){
+                delta=-event.detail/3;
+            }
+            if(delta){
+                handle(delta,inputC);
+            }
+            if(event.preventDefault)
+                event.preventDefault();
+            event.returnValue=false;
+        };
+        if(window.addEventListener){
+            window.addEventListener('DOMMouseScroll',wheel,false);
+        }
+        window.onmousewheel=wheel;
+    };
+    function handle(delta,arr) {
+        var num;
+        for(var i=0;i<arr.length;i++){//得到当前checked元素的下标
+            if(arr[i].checked){
+                num=i;
+            }
+        }
+        if(delta>0 && num>0){//向上滚动
+            num--;
+            arr[num].checked=true;
+        }else if(delta<0 && num<4){//向下滚动
+            num++;
+            arr[num].checked=true;
+        }
+    }
+</script>
+</html>
